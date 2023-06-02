@@ -19,9 +19,11 @@ module.exports = {
   },
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
-    alias: {
-      "react-dom": IS_DEV ? "@hot-loader/react-dom" : "react-dom",
-    },
+    // alias: {
+    //   "react-dom/client": IS_DEV
+    //     ? "@pmmmwh/react-refresh-webpack-plugin"
+    //     : "react-dom/client",
+    // },
   },
 
   mode: NODE_ENV ? NODE_ENV : "development",
@@ -44,9 +46,7 @@ module.exports = {
             loader: require.resolve("ts-loader"),
             options: {
               getCustomTransformers: () => ({
-                before: [IS_DEV && ReactRefreshTypeScript()].filter(
-                  Boolean
-                ),
+                before: [IS_DEV && ReactRefreshTypeScript()].filter(Boolean),
               }),
               transpileOnly: IS_DEV,
             },
